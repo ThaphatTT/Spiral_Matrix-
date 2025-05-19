@@ -2,13 +2,13 @@ exports.spiral_matrix = (value) => {
   let newValue = [];
   let isLastIndex = false;
   let footprints = [];
-  for (let index = 0; index < value.length; index++) {
-    const element = value[index];
+  for (let row = 0; row < value.length; row++) {
+    const element = value[row];
     let inArray;
     if (!isLastIndex) {
-      for (let inside = 0; inside < element.length; inside++) {
-        inArray = element[inside];
-        if (element.length - 1 === inside) {
+      for (let column = 0; column < element.length; column++) {
+        inArray = element[column];
+        if (element.length - 1 === column) {
           newValue.push(inArray);
           isLastIndex = true;
           continue;
@@ -17,17 +17,17 @@ exports.spiral_matrix = (value) => {
       }
     } else {
       for (
-        let inside = element.length - 1;
-        inside >= 0 && inside <= element.length;
-        inside--
+        let column = element.length - 1;
+        column >= 0 && column <= element.length;
+        column--
       ) {
-        inArray = element[inside];
+        inArray = element[column];
         if (inArray !== 5 && inArray !== 4) {
           newValue.push(inArray);
         } else {
           footprints.push(inArray);
         }
-        if (element[0] === 7 && inside === 0) {
+        if (element[0] === 7 && column === 0) {
           const reverse = footprints.reverse();
           newValue.push(...reverse);
         }
